@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation">
+  <meta name="keywords" content="DriveDreamer2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/ms_icon.png">
+
+  <style>  
+    table {  
+      font-family: arial, sans-serif;  
+      border-collapse: collapse;  
+      width: 100%;  
+    }  
+      
+    td, th {  
+      border: 2px solid #F1F4F5;  
+      text-align: left;  
+      padding: 8px;  
+    }  
+    tr:nth-child(3n - 1) {  
+      background-color: #F1F4F5;  
+    }  
+
+    tr:nth-child(3n) {  
+      border: 2px solid #FFFFFF;
+    }  
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://github.com/f1yfisher">Guosheng Zhao</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=96lsfiUAAAAJ&hl">Xiaofeng Wang</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=NmwjI0AAAAAJ&hl">Zheng Zhu</a><sup>2</sup>,</span>
+            <span class="author-block">
+                <a >Xinze Chen</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a >Guan Huang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a >Xiaoyi Bao</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a >Xingang Wang</a><sup>1</sup>,</span>
+            </span><br>
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">CASIA<sup>1</sup>,</span>&nbsp;
+            <span class="author-block">GigaAI<sup>2</sup></span>&nbsp;
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/TODO.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/f1yfisher/DriveDreamer2"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/abs.png" style="width:100%;height:100%;">
+      <p  style="font-size: 16px;"> 
+        DriveDreamer-2 can produce multi-view driving videos based on user descriptions: "On a rainy day, there is a car cutting in."
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            World models have demonstrated superiority in autonomous driving, particularly in the generation of multi-view driving videos. 
+            However, significant challenges still exist in generating customized driving videos. In this paper, we propose DriveDreamer-2, 
+            which builds upon the framework of DriveDreamer and incorporates a Large Language Model (LLM) to generate user-defined driving videos. 
+            Specifically, an LLM interface is initially incorporated to convert a user's query into agent trajectories. Subsequently, a HDMap, 
+            adhering to traffic regulations, is generated based on the trajectories. Ultimately, we propose the  Unified Multi-View Model to enhance 
+            temporal and spatial coherence in the generated driving videos. \textit{DriveDreamer-2} is the first world model to generate customized driving videos, 
+            it can generate uncommon driving videos (e.g., vehicles abruptly cut in) in a user-friendly manner. Besides, experimental results demonstrate 
+            that the generated videos enhance the training of driving perception methods (e.g., 3D detection and tracking). Furthermore, video generation 
+            quality of DriveDreamer-2 surpasses other state-of-the-art methods, showcasing FID and FVD scores of 11.2 and 55.7, representing relative improvements of 30% and 50%.
+          </p>
+        </div> 
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+  </div>
+</section>
+
+
+<section class="section" id="Method">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Method</h2>
+    <section class="hero method">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/method.png" style="width:100%;height:100%;">
+          <p>
+            The overall framework of DriveDreamer-2 involves initially generating agent trajectories according to the user query, followed by producing a realistic HDMap, and finally generating multi-view driving videos.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+
+<section class="section" id="Results">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Results</h2>
+    <section class="hero method">
+    <div class="container is-max-desktop">
+    <div class="hero-body">  
+
+  <h4 class="title">"Daytime / Rainy day / At Night, a car abruptly cutting in from the left rear of ego-car."</h4>
+    <div class="container is-max-desktop">
+        <video preload="auto"poster="" id="tree" autoplay controls muted loop width="12000px" outline="0px"> 
+          <source src="./static/videos/cut_in_left.mp4"
+          type="video/mp4">
+        </video>
+    </div> 
+    <br>
+    <p style="margin-bottom: 30px;"></p>
+
+	<h4 class="title">"Daytime / Rainy day / At Night, a car abruptly cutting in from the right rear of ego-car."</h4>
+  <div class="container is-max-desktop">
+    <div style="text-align: center;">
+      <video preload="auto" poster="" id="tree" autoplay controls muted loop width="1200px" outline="0px" style="display: inline-block;">
+        <source src="./static/videos/cut_in_right.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <br>
+	<p style="margin-bottom: 30px;"></p>
+
+  <h4 class="title">"Daytime / Rainy day / At Night, ego-car drives through urban street, surrounded by a flow of vehicles on both sides."</h4>
+
+  <div class="container is-max-desktop">
+    <div style="text-align: center;">
+      <video preload="auto" poster="" id="tree" autoplay controls muted loop width="1000px" outline="0px" style="display: inline-block;">
+        <source src="./static/videos/vehicle_both_side.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <br>
+	<p style="margin-bottom: 30px;"></p>
+
+	<h4 class="title">"Daytime / Rainy day / At Night, a bus is positioned to the left front of the ego-car, with a pedestrian near the bus."</h4>
+
+  <div class="container is-max-desktop">
+    <div style="text-align: center;">
+      <video preload="auto" poster="" id="tree" autoplay controls muted loop width="1000px" outline="0px" style="display: inline-block;">
+        <source src="./static/videos/bus.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  </div></div></section>
+  </div>
+</section>
+
+	
+	
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <p> If you use our work in your research, please cite: </p>
+    <pre><code>@article{zhao2024drive,
+  title={DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation},
+  author={Zhao, Guosheng and Wang, Xiaofeng and Zhu, Zheng and Chen, Xinze and Huang, Guan and Bao, Xiaoyi and Wang, Xingang},
+  journal={arXiv preprint arXiv:TODO},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/f1yfisher/DriveDreamer2" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website adapted from the following <a href="https://github.com/nerfies/nerfies.github.io">template</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
